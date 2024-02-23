@@ -18,17 +18,14 @@ const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
   /* <SimpleMDE />; */
 }
 
-interface BlogForm {
-  title: string;
-  content: string;
-}
+
 
 const Dashboard = () => {
   const router = useRouter();
 
-  const [image, setImage] = useState<string | undefined>("");
+  const [image, setImage] = useState<string | null>("");
   const [title, setTitle] = useState("");
-  const [content, setContent] = useState<string | undefined>("");
+  const [content, setContent] = useState<string | null>("");
   const [loading, setLoading] = useState(false);
 
   const [titleReq, setTitleReq] = useState(false);
@@ -42,10 +39,10 @@ const Dashboard = () => {
     setContent(content);
   }, []);
 
-  const handleChange = (content?: string | undefined) => {
-    setContent(content);
-    console.log("markdown: ", content);
-  };
+  // const handleChange = (content?: string | null) => {
+  //   setContent(content);
+  //   console.log("markdown: ", content);
+  // };
 
   // Handle the submit of the post form
   const handleSubmit = async () => {
