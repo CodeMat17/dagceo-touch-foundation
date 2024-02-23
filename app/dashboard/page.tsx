@@ -6,11 +6,17 @@ import { supabaseclient } from "@/lib/supabaseclient";
 import "easymde/dist/easymde.min.css";
 import { CameraIcon, Loader2, X } from "lucide-react";
 import { CldImage, CldUploadWidget } from "next-cloudinary";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
-import { useCallback, useMemo, useState } from "react";
-import SimpleMDE from "react-simplemde-editor";
+import { useCallback, useState } from "react";
 
-<SimpleMDE />;
+const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
+  ssr: false,
+});
+
+{
+  /* <SimpleMDE />; */
+}
 
 interface BlogForm {
   title: string;
@@ -35,8 +41,6 @@ const Dashboard = () => {
   const onChange = useCallback((content: string) => {
     setContent(content);
   }, []);
-
-  
 
   const handleChange = (content?: string | undefined) => {
     setContent(content);
@@ -132,7 +136,7 @@ const Dashboard = () => {
             </CldUploadWidget>
           </div>
         )}
-        
+
         <div className='space-y-4'>
           <div className='space-y-1.5'>
             <label className='text-gray-500'>
