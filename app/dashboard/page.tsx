@@ -25,7 +25,7 @@ const Dashboard = () => {
 
   const [image, setImage] = useState<string | null>("");
   const [title, setTitle] = useState("");
-  const [content, setContent] = useState<string | null>("");
+  const [content, setContent] = useState<string | undefined>("");
   const [loading, setLoading] = useState(false);
 
   const [titleReq, setTitleReq] = useState(false);
@@ -39,10 +39,6 @@ const Dashboard = () => {
     setContent(content);
   }, []);
 
-  // const handleChange = (content?: string | null) => {
-  //   setContent(content);
-  //   console.log("markdown: ", content);
-  // };
 
   // Handle the submit of the post form
   const handleSubmit = async () => {
