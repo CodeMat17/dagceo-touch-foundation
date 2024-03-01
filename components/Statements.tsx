@@ -1,8 +1,7 @@
 import {
-  CircleDotDashed,
   Footprints,
   PlugZap,
-  ScanEyeIcon,
+  ScanEyeIcon
 } from "lucide-react";
 import Link from "next/link";
 import TitleModel from "./TitleModel";
@@ -43,7 +42,7 @@ const Statements = () => {
               {item.id === 2 && <Footprints className='w-8 h-8 text-white' />}
               {item.id === 3 && <PlugZap className='w-8 h-8 text-white' />}
             </div>
-            <h2 className='font-semibold text-lg tracking-wider'>
+            <h2 className='font-semibold text-lg tracking-wider whitespace-nowrap'>
               {item.title}
             </h2>
             <p className='text-center line-clamp-4'>{item.content}</p>
