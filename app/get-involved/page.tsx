@@ -1,5 +1,6 @@
 
 
+import AddSponsorForm from "@/components/AddSponsorForm";
 import TitleModel from "@/components/TitleModel";
 import {
   Accordion,
@@ -10,6 +11,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { supabaseclient } from "@/lib/supabaseclient";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -17,6 +19,8 @@ export const metadata: Metadata = {
 };
 
 const GetInvolved = () => {
+ 
+
   return (
     <div className='px-4 py-20 w-full min-h-screen max-w-6xl mx-auto'>
       <TitleModel text='Get Involved' />
@@ -130,21 +134,15 @@ const GetInvolved = () => {
             <AccordionItem value='item 2'>
               <AccordionTrigger>BECOME A SPONSOR</AccordionTrigger>
               <AccordionContent>
-                <div className='space-y-3'>
-                  <Input placeholder='Enter full name' className='' />
-                  <Input type='email' placeholder='Enter emaill address' />
-                  <Input placeholder='Enter phone number' />
-                  <Input placeholder='Enter location' />
-                  <Textarea placeholder='Enter remark' />
-                  <Button className='w-full'>SUBMIT</Button>
-                </div>
+           
+                <AddSponsorForm />
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value='item 3'>
               <AccordionTrigger>MAKE A DONATION</AccordionTrigger>
               <AccordionContent>
                 <div className='space-y-3'>
-               <p>Donation details</p>
+                  <p>Donation details</p>
                   <Button className='w-full'>DONATE</Button>
                 </div>
               </AccordionContent>

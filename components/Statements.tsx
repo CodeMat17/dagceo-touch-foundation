@@ -1,4 +1,10 @@
-import { Footprints, PlugZap, ScanEyeIcon } from "lucide-react";
+import {
+  CircleDotDashed,
+  Footprints,
+  PlugZap,
+  ScanEyeIcon,
+} from "lucide-react";
+import Link from "next/link";
 import TitleModel from "./TitleModel";
 import { Button } from "./ui/button";
 
@@ -32,11 +38,10 @@ const Statements = () => {
           <div
             key={item.id}
             className='flex flex-col items-center gap-3 justify-center'>
-            <div className='w-16 h-16 bg-gradient-to-tr from-pink-400 to-green-400 flex items-center justify-center animate-pulse rounded-full'>
+            <div className='w-16 h-16 bg-gradient-to-tr from-blue-500 to-green-400 flex items-center justify-center animate-pulse rounded-full'>
               {item.id === 1 && <ScanEyeIcon className='w-8 h-8 text-white' />}
               {item.id === 2 && <Footprints className='w-8 h-8 text-white' />}
               {item.id === 3 && <PlugZap className='w-8 h-8 text-white' />}
-          
             </div>
             <h2 className='font-semibold text-lg tracking-wider'>
               {item.title}
@@ -46,10 +51,12 @@ const Statements = () => {
         ))}
       </div>
       <div className='mt-6 flex justify-center'>
-        <Button variant='outline' className='shadow-md'>
-          Read more...
+        <Button asChild variant='outline' className='shadow-md'>
+          <Link href='/about-us'>Read more...</Link>
         </Button>
       </div>
+
+    
     </div>
   );
 };

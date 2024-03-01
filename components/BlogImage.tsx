@@ -2,11 +2,11 @@
 
 import { CldImage } from "next-cloudinary";
 
-const BlogImage = ({ image }: any) => {
+const BlogImage = ({ image, width, height }: any) => {
   return (
     <CldImage
-      width='600'
-      height='200'
+      width={width}
+      height={height}
       src={image}
       crop='fill'
       sizes='50vw'

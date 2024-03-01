@@ -1,13 +1,11 @@
-import Image from "next/image";
 import Link from "next/link";
 import TitleModel from "./TitleModel";
 import { Button } from "./ui/button";
-import { Card, CardDescription, CardHeader, CardTitle } from "./ui/card";
 
 const Programs = () => {
   return (
     <div className='px-4 py-20 flex flex-col items-center justify-center'>
-      <TitleModel text='Programs And Initiatives' />
+      <TitleModel text={'Programs & Initiatives'} />
 
       <div className='mt-12 w-full max-w-2xl mx-auto flex gap-6 justify-center'>
         <div className='space-y-4'>
@@ -51,7 +49,7 @@ const Programs = () => {
       </div>
       <div className='mt-4'>
         <Button asChild variant='outline'>
-          <Link href='/blog'>Read more...</Link>
+          <Link href='/our-programs'>Read more...</Link>
         </Button>
       </div>
     </div>

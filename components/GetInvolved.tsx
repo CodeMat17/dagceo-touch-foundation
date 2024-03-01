@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
+import Link from "next/link";
 
 const GetInvolved = () => {
   return (
@@ -36,8 +37,8 @@ const GetInvolved = () => {
             </p>
           </CardContent>
           <CardFooter className='flex justify-center'>
-            <Button className='shadow-md' variant='outline'>
-              Learn more
+            <Button asChild className='shadow-md' variant='outline'>
+              <Link href='/get-involved'> Learn more</Link>
             </Button>
           </CardFooter>
         </Card>
@@ -64,8 +65,8 @@ const GetInvolved = () => {
             </p>
           </CardContent>
           <CardFooter className='flex justify-center'>
-            <Button className='shadow-md' variant='outline'>
-              Learn more
+            <Button asChild className='shadow-md' variant='outline'>
+              <Link href='/get-involved'> Learn more</Link>
             </Button>
           </CardFooter>
         </Card>
@@ -91,8 +92,8 @@ const GetInvolved = () => {
             </p>
           </CardContent>
           <CardFooter className='flex justify-center'>
-            <Button className='shadow-md' variant='outline'>
-              Learn more
+            <Button asChild className='shadow-md' variant='outline'>
+              <Link href='/get-involved'> Learn more</Link>
             </Button>
           </CardFooter>
         </Card>

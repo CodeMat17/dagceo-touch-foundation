@@ -2,12 +2,20 @@ import Image from "next/image";
 import { Button } from "./ui/button";
 import {
   Card,
+  CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "./ui/card";
 import TitleModel from "./TitleModel";
+import { supabaseclient } from "@/lib/supabaseclient";
+import BlogImage from "./BlogImage";
+import dayjs from "dayjs";
+import ReactMarkdown from "react-markdown";
+import rehypeHighlight from "rehype-highlight";
+
+export const revalidate = 0;
 
 const updateData = [
   {
@@ -30,36 +38,54 @@ const updateData = [
   },
 ];
 
-const Updates = () => {
+const Updates = async () => {
+ let { data: blogs, error } = await supabaseclient
+   .from("blogs")
+   .select("*")
+   .order("created_at", { ascending: false }).range(0, 2);
+
   return (
     <div className='px-4 py-20 flex flex-col items-center justify-center max-w-6xl mx-auto'>
       <TitleModel text='Latest Update (3)' />
-      <div className='mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12'>
-        {updateData.map((data) => (
-          <Card
-            key={data.id}
-            className='w-full overflow-hidden transition transform duration-500 hover:shadow-lg hover:scale-105'>
-            <Image
-              alt=''
-              priority
-              src='/pht1.jpg'
-              width={300}
-              height={300}
-              className='w-full aspect-video'
-            />
-            <CardHeader>
-              <CardTitle>{data.title}</CardTitle>
-              <CardDescription>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Inventore!
-              </CardDescription>
-            </CardHeader>
-                <CardFooter className=" flex justify-between items-center">
-                    <p className="text-sm">{data.date}</p>
-              <Button>Learn more</Button>
-            </CardFooter>
-          </Card>
-        ))}
+
+      <div className='mt-12'>
+        {blogs && blogs.length < 1 ? (
+          <div className='text-gray-500 text-center py-32'>
+            No post available at the moment.
+          </div>
+        ) : (
+          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 '>
+            {blogs &&
+              blogs.map((blog) => (
+                <Card
+                  key={blog.id}
+                  className='shadow-md transition transform duration-500 hover:scale-105 overflow-hidden'>
+                  {blog.image ? (
+                    <div className=''>
+                      <BlogImage image={blog.image} width='600' height='200' />
+                    </div>
+                  ) : (
+                    <div className='flex justify-center px-5 py-8 text-xl font-bold'>
+                      BLOG POST
+                    </div>
+                  )}
+                  <CardHeader>
+                    <CardTitle>{blog.title}</CardTitle>
+                    <span className='text-sm text-gray-500'>
+                      Posted on{" "}
+                      {dayjs(blog.created_at).format("MMM DD, YYYY, h:mm A")}
+                    </span>
+                  </CardHeader>
+                  <CardContent className='line-clamp-2'>
+                    <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
+                      {blog.content.replace(/\n/gi, "\n\n &nbsp;")}
+                    </ReactMarkdown>
+                  </CardContent>
+                  <CardFooter></CardFooter>
+                </Card>
+              ))}
+          </div>
+        )}
       </div>
     </div>
   );

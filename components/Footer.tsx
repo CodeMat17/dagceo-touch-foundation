@@ -1,3 +1,4 @@
+import { supabaseclient } from "@/lib/supabaseclient";
 import {
   Clock9Icon,
   Facebook,
@@ -12,10 +13,18 @@ import {
 import Link from "next/link";
 import { Button } from "./ui/button";
 
-const Footer = () => {
+export const revalidate = 0;
+
+const Footer = async () => {
+  let { data: blogs, error } = await supabaseclient
+    .from("blogs")
+    .select("id, title")
+    .order("created_at", { ascending: false })
+    .range(0, 3);
+  
   return (
     <div className='px-4 py-20 bg-slate-900 text-gray-200'>
-      <div className='max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-0'>
+      <div className='max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 '>
         <div className='space-y-3'>
           <div className='flex flex-col gap-'>
             <Recycle className='w-12 h-12' />
@@ -39,30 +48,18 @@ const Footer = () => {
           </div>
         </div>
 
-
-        <div className=' sm:mt-12 flex flex-col sm:items-center'>
+        <div className=' sm:mt-12 flex flex-col '>
           <p className='text-lg font-semibold'>Recent Blog Post (4)</p>
-          <div className='flex flex-col gap-1 mt-4 text-gray-400'>
-            <Link
-              href='#'
-              className='font-light text-sm hover:underline hover:text-blue-600'>
-              Post 1 Lorem ipsum dolor sit.
-            </Link>
-            <Link
-              href='#'
-              className='font-light text-sm hover:underline hover:text-blue-600'>
-              Post 2 Lorem ipsum dolor sit.
-            </Link>
-            <Link
-              href='#'
-              className='font-light text-sm hover:underline hover:text-blue-600'>
-              Post 3 Lorem ipsum dolor sit.
-            </Link>
-            <Link
-              href='#'
-              className='font-light text-sm hover:underline hover:text-blue-600'>
-              Post 4 Lorem ipsum dolor sit.
-            </Link>
+          <div className='flex flex-col gap-1 mt-4 text-gray-400 max-w-xs'>
+            {blogs && blogs.length < 1
+              ? "No blog post yet"
+              : blogs?.map((blog) => (
+                  <Link
+                    href={`/blog/${blog.id}`}
+                    className='font-light text-sm hover:underline hover:text-blue-600 truncate'>
+                    {blog.title}
+                  </Link>
+                ))}
           </div>
         </div>
 
@@ -71,7 +68,11 @@ const Footer = () => {
           <div className='mt-4 text-sm space-y-3 text-gray-400'>
             <div className='flex items-center gap-3'>
               <MapPinIcon className='w-5 h-5' />
-              Plot 223 Lorem ipsum dolor sit amet. FCT, Abuja.
+              Head Office: No. 91 Upu road, Otukpo, Benue State.
+            </div>
+            <div className='flex items-center gap-3'>
+              <MapPinIcon className='w-5 h-5' />
+              Branch Office: Suit No. S/... Apo Park, Apo Resettlement, Abuja.
             </div>
             <div className='flex items-center gap-3'>
               <PhoneCallIcon className='w-5 h-5' />
@@ -79,7 +80,7 @@ const Footer = () => {
             </div>
             <div className='flex items-center gap-3'>
               <MailCheck className='w-5 h-5' />
-              emailus@dagceotouchfoundation.org
+              email@dagceotouchfoundation.org
             </div>
             <div className='flex items-center gap-3'>
               <Clock9Icon className='w-5 h-5' />
