@@ -4,6 +4,7 @@ import { useTheme } from "next-themes";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import ThemeToggleButton from "./ThemeToggleButton";
+import HamburgerMenu from "./HamburgerMenu";
 
 const NavBar = () => {
   const { theme, setTheme } = useTheme();
@@ -16,7 +17,10 @@ const NavBar = () => {
         <p>LOGO</p>
         <div className='flex items-center gap-4 text-lg'>
           <ThemeToggleButton />
-          <div className='hidden sm:flex gap-4'>
+          <div className="md:hidden">
+            <HamburgerMenu />
+          </div>
+          <div className='hidden md:flex gap-4'>
             <Link
               href='/'
               className={`hover:text-blue-600 transition transform hover:scale-110 whitespace-nowrap border-b-4 pb-1 ${
