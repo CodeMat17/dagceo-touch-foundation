@@ -34,10 +34,7 @@ const ContactUs = () => {
         </div>
         <div className='w-full max-w-xl lg:max-w-md xl:max-w-xl mx-auto'>
           <p className='text-lg font-semibold text-center text-gray-500'>
-            You want to send a mail?
-          </p>
-          <p className='text-lg font-semibold text-center text-gray-500'>
-            Fill the boxes below:
+            Feedback Form
           </p>
           <div className='mt-3 space-y-3'>
             <Input placeholder='Enter your email address' />
