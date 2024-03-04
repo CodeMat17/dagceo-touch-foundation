@@ -177,20 +177,6 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      {/* <MDEditor
-            value={content}
-            onChange={handleChange}
-            autoFocus={true}
-            autoCapitalize='true'
-            commands={[...commands.getCommands()]}
-            previewOptions={{
-              rehypePlugins: [[rehypeSanitize]],
-            }}
-            preview='edit'
-            textareaProps={{
-              placeholder: "Please enter post content here",
-            }}
-          /> */}
     </div>
   );
 };

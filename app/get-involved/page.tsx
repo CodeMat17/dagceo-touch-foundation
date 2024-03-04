@@ -9,9 +9,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { supabaseclient } from "@/lib/supabaseclient";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -34,7 +31,7 @@ const GetInvolved = () => {
             <AccordionItem value='item 1'>
               <AccordionTrigger>BECOME A VOLUNTEER</AccordionTrigger>
               <AccordionContent>
-                <div className=' text-gray-500 space-y-4'>
+                <div className=' text-gray-300 space-y-4'>
                   <p>
                     At Dagceo Touch Foundation, volunteers are at the heart of
                     everything we do. Our dedicated team of volunteers plays a

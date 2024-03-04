@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 const AboutUs = () => {
   return (
     <div className='px-4 py-20 max-w-7xl mx-auto'>
-      <TitleModel text='About Dagceo Touch Foundation' />
+      <TitleModel text='About Us' />
       <div className='mt-12 space-y-4 max-w-2xl mx-auto'>
         <p>
           At Dagceo Touch Foundation, we believe in the power of compassion,

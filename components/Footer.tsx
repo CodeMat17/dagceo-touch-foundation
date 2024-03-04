@@ -11,6 +11,7 @@ import {
   X,
 } from "lucide-react";
 import Link from "next/link";
+import LogoComponent from "./LogoComponent";
 import { Button } from "./ui/button";
 
 export const revalidate = 0;
@@ -21,13 +22,13 @@ const Footer = async () => {
     .select("id, title")
     .order("created_at", { ascending: false })
     .range(0, 3);
-  
+
   return (
     <div className='px-4 py-20 bg-slate-900 text-gray-200'>
       <div className='max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 '>
         <div className='space-y-3'>
-          <div className='flex flex-col gap-'>
-            <Recycle className='w-12 h-12' />
+          <div className='flex flex-col'>
+            <LogoComponent classnames='w-[96px] h-[96px]' />
             <p className='font-semibold text-xl'>Dagceo Touch Foundation</p>
           </div>
 
@@ -54,7 +55,7 @@ const Footer = async () => {
             {blogs && blogs.length < 1
               ? "No blog post yet"
               : blogs?.map((blog) => (
-                  <Link
+                  <Link key={blog.id}
                     href={`/blog/${blog.id}`}
                     className='font-light text-sm hover:underline hover:text-blue-600 truncate'>
                     {blog.title}
