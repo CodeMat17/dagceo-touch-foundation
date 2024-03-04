@@ -2,6 +2,11 @@ import TitleModel from "@/components/TitleModel";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "DTF | Contact Us",
+};
 
 const ContactUs = () => {
   return (
