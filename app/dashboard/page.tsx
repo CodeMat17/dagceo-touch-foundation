@@ -81,7 +81,7 @@ const Dashboard = () => {
   return (
     <div className='px-4 py-20 w-full min-h-screen max-w-2xl mx-auto'>
       <div className="flex justify-end">
-         <UserButton />
+         <UserButton afterSignOutUrl="/" />
       </div>
      
       <p className='font-semibold text-xl text-center'>Create a Blog Post</p>
