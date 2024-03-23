@@ -7,7 +7,6 @@ import {
   MailCheck,
   MapPinIcon,
   PhoneCallIcon,
-  Recycle,
   X,
 } from "lucide-react";
 import Link from "next/link";
@@ -24,11 +23,11 @@ const Footer = async () => {
     .range(0, 3);
 
   return (
-    <div className='px-4 py-20 bg-slate-900 text-gray-200'>
+    <div className='px-4 py-8 bg-slate-900 text-gray-200'>
       <div className='max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 '>
         <div className='space-y-3'>
           <div className='flex flex-col'>
-            <LogoComponent classnames='w-[96px] h-[96px]' />
+            <LogoComponent classnames='w-[84px] h-[84px]' />
             <p className='font-semibold text-xl'>Dagceo Touch Foundation</p>
           </div>
 
@@ -45,26 +44,36 @@ const Footer = async () => {
           </div>
 
           <div className='pt-3'>
-            <Button className='bg-slate-700 px-12'>Donate</Button>
+            <Button className='bg-slate-700 hover:bg-slate-800 text-white px-12'>
+              Donate
+            </Button>
           </div>
         </div>
 
-        <div className=' sm:mt-12 flex flex-col '>
+        <div className=' sm:mt-[85px] flex flex-col '>
           <p className='text-lg font-semibold'>Recent Blog Post (4)</p>
           <div className='flex flex-col gap-1 mt-4 text-gray-400 max-w-xs'>
             {blogs && blogs.length < 1
               ? "No blog post yet"
               : blogs?.map((blog) => (
-                  <Link key={blog.id}
+                  <Link
+                    key={blog.id}
                     href={`/blog/${blog.id}`}
                     className='font-light text-sm hover:underline hover:text-blue-600 truncate'>
                     {blog.title}
                   </Link>
                 ))}
           </div>
+          <div className='mt-8'>
+            <Button
+              asChild
+              className='bg-slate-700 hover:bg-slate-800 text-white px-12'>
+              <Link href='/sign-in'>Admin</Link>
+            </Button>
+          </div>
         </div>
 
-        <div className=' md:mt-12'>
+        <div className=' md:mt-[85px]'>
           <p className='text-lg font-semibold'>Contact Info</p>
           <div className='mt-4 text-sm space-y-3 text-gray-400'>
             <div className='flex items-center gap-3'>

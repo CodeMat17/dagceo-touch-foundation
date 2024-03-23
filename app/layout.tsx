@@ -1,3 +1,4 @@
+import { ClerkProvider } from '@clerk/nextjs'
 import NavBar from "@/components/NavBar";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -6,6 +7,7 @@ import "./globals.css";
 import Footer from "@/components/Footer";
 import { Suspense } from "react";
 import { CircleDotDashed } from "lucide-react";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,16 +26,21 @@ export default function RootLayout({
     <html lang='en'>
       <body className={inter.className}>
         <ThemeProvider attribute='class'>
+          <ClerkProvider>
           <section>
             <NavBar />
-            <Suspense fallback={<div className="pt-20 flex items-center justify-center">
-              <CircleDotDashed className="w-16 h-16 font-semibold text-2xl" /> 
-            </div>}>
-               {children} 
+            <Suspense
+              fallback={
+                <div className='pt-20 flex items-center justify-center'>
+                  <CircleDotDashed className='w-16 h-16 font-semibold text-2xl' />
+                </div>
+              }>
+              {children}
             </Suspense>
-          
+
             <Footer />
           </section>
+          </ClerkProvider>
         </ThemeProvider>
       </body>
     </html>

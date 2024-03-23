@@ -1,7 +1,6 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import HamburgerMenu from "./HamburgerMenu";
@@ -14,9 +13,9 @@ const NavBar = () => {
 
   return (
     <div
-      className={`px-4 py-1.5 sticky top-0 z-50 w-full bg-gray-100 dark:bg-gray-950`}>
+      className={`px-4 py-2 sticky top-0 z-50 w-full bg-gray-100 dark:bg-gray-950`}>
       <div className='w-full max-w-7xl mx-auto flex items-center justify-between'>
-        <LogoComponent classnames='w-20 h-20 animate-animation' />
+        <LogoComponent classnames='w-[72px] h-[72px] animate-animation' />
 
         <div className='flex items-center gap-4 text-lg'>
           <ThemeToggleButton />
@@ -43,13 +42,13 @@ const NavBar = () => {
               About Us
             </Link>
             <Link
-              href='/our-programs'
+              href='/our-programme'
               className={`hover:text-blue-600 transition transform hover:scale-110 whitespace-nowrap border-b-4 pb-1 ${
-                pathname === "/our-programs"
+                pathname === "/our-programme"
                   ? "duration-700 text-blue-600 border-blue-600 "
                   : "border-transparent"
               }`}>
-              Programs
+              Programme
             </Link>
             <Link
               href='/get-involved'

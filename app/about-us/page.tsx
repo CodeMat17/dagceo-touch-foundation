@@ -1,14 +1,33 @@
-import TitleModel from "@/components/TitleModel"
+import TitleModel from "@/components/TitleModel";
+import { createClient } from "@/utils/supabase/server";
+import { auth } from "@clerk/nextjs";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "DTF | About-Us",
 };
 
-const AboutUs = () => {
+const AboutUs = async () => {
+  const supabase = createClient();
+  const { userId } = auth();
+
+  let { data: aboutus, error } = await supabase.from("aboutus").select("*");
+
+  if (userId) {
+    return (
+      <div className='px-5 w-full min-h-screen py-12'>
+        <TitleModel text='About Us' />
+        <div className="mt-6">   {aboutus &&
+          aboutus.map((item) => <div key={item.id}>{item.content}</div>)}</div>
+     
+      </div>
+    );
+  }
+
   return (
     <div className='px-4 py-20 max-w-7xl mx-auto'>
       <TitleModel text='About Us' />
+
       <div className='mt-12 space-y-4 max-w-2xl mx-auto'>
         <p>
           At Dagceo Touch Foundation, we believe in the power of compassion,
@@ -61,6 +80,6 @@ const AboutUs = () => {
       </div>
     </div>
   );
-}
+};
 
-export default AboutUs
+export default AboutUs;
