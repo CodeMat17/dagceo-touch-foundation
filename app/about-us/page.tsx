@@ -1,7 +1,12 @@
+// import EditSimpleMDE from "@/components/EditSimpleMDE";
 import TitleModel from "@/components/TitleModel";
 import { createClient } from "@/utils/supabase/server";
 import { auth } from "@clerk/nextjs";
 import { Metadata } from "next";
+import ReactMarkdown from "react-markdown";
+import rehypeHighlight from "rehype-highlight";
+
+// export const revalidate = 0;
 
 export const metadata: Metadata = {
   title: "DTF | About-Us",
@@ -15,11 +20,16 @@ const AboutUs = async () => {
 
   if (userId) {
     return (
-      <div className='px-5 w-full min-h-screen py-12'>
+      <div className='px-5 w-full min-h-screen max-w-2xl mx-auto py-12'>
         <TitleModel text='About Us' />
-        <div className="mt-6">   {aboutus &&
-          aboutus.map((item) => <div key={item.id}>{item.content}</div>)}</div>
-     
+        <div className='mt-6'>
+          {aboutus &&
+            aboutus.map((item) => (
+              <div key={item.id}>
+                {/* <EditSimpleMDE id={item.id} item={item.content} /> */}
+              </div>
+            ))}
+        </div>
       </div>
     );
   }
@@ -28,7 +38,18 @@ const AboutUs = async () => {
     <div className='px-4 py-20 max-w-7xl mx-auto'>
       <TitleModel text='About Us' />
 
-      <div className='mt-12 space-y-4 max-w-2xl mx-auto'>
+      <div className='mt-12 max-w-2xl mx-auto'>
+        {aboutus &&
+          aboutus.map((item) => (
+            <div key={item.id}>
+              <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
+                {item.content.replace(/\n/gi, "\n\n &nbsp;")}
+              </ReactMarkdown>
+            </div>
+          ))}
+      </div>
+
+      {/* <div className='mt-12 space-y-4 max-w-2xl mx-auto'>
         <p>
           At Dagceo Touch Foundation, we believe in the power of compassion,
           equity, and collective action to transform lives and communities
@@ -77,7 +98,7 @@ const AboutUs = async () => {
           Together, we can make a difference and build a world where everyone
           has the opportunity to thrive.
         </p>
-      </div>
+      </div> */}
     </div>
   );
 };
