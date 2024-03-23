@@ -1,5 +1,6 @@
 "use client";
 
+import { UserButton } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { supabaseclient } from "@/lib/supabaseclient";
@@ -79,6 +80,10 @@ const Dashboard = () => {
 
   return (
     <div className='px-4 py-20 w-full min-h-screen max-w-2xl mx-auto'>
+      <div className="flex justify-end">
+         <UserButton />
+      </div>
+     
       <p className='font-semibold text-xl text-center'>Create a Blog Post</p>
 
       <div className='mt-12 space-y-4'>

@@ -49,7 +49,7 @@ const Programs = () => {
       </div>
       <div className='mt-4'>
         <Button asChild variant='outline'>
-          <Link href='/our-programs'>Read more...</Link>
+          <Link href='/our-programme'>Read more...</Link>
         </Button>
       </div>
     </div>

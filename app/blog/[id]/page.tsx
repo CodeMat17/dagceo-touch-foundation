@@ -20,7 +20,9 @@ const BlogDetails = async ({ params: { id } }: any) => {
 
   return (
     <div className='px-4 py-20 w-full max-w-4xl mx-auto min-h-screen'>
+      {/* <pre>{JSON.stringify(blog, null, 3)}</pre> */}
       <div>
+    
         <div className='flex flex-col md:flex-row items-center justify-center gap-5'>
           <div className='max-w-md'>
             <h2 className='text-2xl md:text-3xl font-semibold'>{blog.title}</h2>

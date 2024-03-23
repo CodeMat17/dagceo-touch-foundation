@@ -1,3 +1,5 @@
+"use client";
+
 // components/HamburgerMenu.js
 import { motion } from "framer-motion";
 import { AlignRight, X } from "lucide-react";
@@ -61,10 +63,10 @@ const HamburgerMenu = () => {
           ABOUT US
         </Link>
         <Link
-          href='/our-programs'
+          href='/our-programme'
           onClick={() => setIsOpen(false)}
           className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700  rounded-lg tracking-wider text-lg font-semibold'>
-          PROGRAMS
+          PROGRAMME
         </Link>
         <Link
           href='/get-involved'
