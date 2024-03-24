@@ -1,4 +1,5 @@
 import EditDashboard from "@/components/EditDashboard";
+import EditHeroText from "@/components/EditHeroText";
 // import { Button } from "@/components/ui/button";
 import { createClient } from "@/utils/supabase/server";
 import { UserButton } from "@clerk/nextjs";
@@ -27,7 +28,12 @@ const Dashboard = async () => {
    const { data: impact } = await supabase
      .from("ourimpact")
      .select("*")
-     .single();
+    .single();
+  
+  const { data: hero } = await supabase
+    .from("herotext")
+    .select("*")
+    .single();
   
   // Handle the submit of the post form
   // const handleSubmit = async () => {
@@ -67,12 +73,24 @@ const Dashboard = async () => {
   // };
 
   return (
-    <div className='px-4 py-20 w-full min-h-screen max-w-3xl mx-auto'>
+    <div className='px-4 py-20 w-full min-h-screen max-w-2xl mx-auto'>
       <div className='flex items-center justify-center gap-8'>
         <p className='font-semibold text-xl text-center'>DASHBOARD</p>
         <UserButton afterSignOutUrl='/' />
       </div>
       <div className='mt-12 flex flex-col gap-10'>
+        <div>
+          <h1 className='mb-3 text-center font-medium text-lg'>
+            Edit Hero Text Animation
+          </h1>
+          <EditHeroText
+            id={hero.id}
+            text1={hero.text_1}
+            text2={hero.text_2}
+            text3={hero.text_3}
+            text4={hero.text_4}
+          />
+        </div>
         <div>
           <h1 className='mb-3 text-center font-medium text-lg'>
             Edit Our Mission

@@ -22,8 +22,6 @@ const Statements = async () => {
     .select("*")
     .single();
 
-  console.log("Mid: ", mission.id);
-
   const statements = [
     {
       id: mission.id,

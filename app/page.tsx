@@ -9,7 +9,7 @@ export default function Home() {
     <main className='w-full min-h-screen'>
       <HeroPage />
       <Statements />
-      <Programs />
+      {/* <Programs /> */}
       <GetInvolved />
       {/* <WhoWeAre /> */}
       <Updates />
