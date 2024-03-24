@@ -51,12 +51,12 @@ const ContactUs = async () => {
           <div>
             <p className='text-lg font-semibold text-gray-500'>Office Hours</p>
             <p className='font-light'>
-              {data.officedays}, {data.time}
+              {data.officehours}
             </p>
           </div>
           <div>
             <p className='text-lg font-semibold text-gray-500'>Phone no.</p>
-            <p className='font-light'>{data.time}</p>
+            <p className='font-light'>{data.phone}</p>
           </div>
         </div>
         <div className='w-full max-w-xl lg:max-w-md xl:max-w-xl mx-auto'>
