@@ -1,4 +1,4 @@
-import { supabaseclient } from "@/lib/supabaseclient";
+import { createClient } from "@/utils/supabase/server";
 import {
   Clock9Icon,
   Facebook,
@@ -16,11 +16,15 @@ import { Button } from "./ui/button";
 export const revalidate = 0;
 
 const Footer = async () => {
-  let { data: blogs, error } = await supabaseclient
+  const supabase = createClient();
+
+  let { data: blogs, error } = await supabase
     .from("blogs")
     .select("id, title")
     .order("created_at", { ascending: false })
     .range(0, 3);
+
+  let { data: contact } = await supabase.from("contactus").select("*").single();
 
   return (
     <div className='px-4 py-8 bg-slate-900 text-gray-200'>
@@ -37,10 +41,32 @@ const Footer = async () => {
             consectetur adipisicing elit. Dolor iusto optio laudantium?
           </p>
           <div className='flex items-center gap-6 pt-2 text-gray-400'>
-            <Facebook className='w-[20px] h-[20px]' />
-            <X className='w-[20px] h-[20px]' />
-            <Instagram className='w-[20px] h-[20px]' />
-            <Linkedin className='w-[20px] h-[20px]' />
+            <Button
+              size='icon'
+              variant='ghost'
+              className='rounded-full hover:bg-gray-500 transition transform duration-300'>
+              <Facebook className='w-[20px] h-[20px]' />
+            </Button>
+            <Button
+              size='icon'
+              variant='ghost'
+              className='rounded-full hover:bg-gray-500 transition transform duration-300'>
+              <X className='w-[20px] h-[20px]' />
+            </Button>
+
+            <Button
+              size='icon'
+              variant='ghost'
+              className='rounded-full hover:bg-gray-500 transition transform duration-300'>
+              <Instagram className='w-[20px] h-[20px]' />
+            </Button>
+
+            <Button
+              size='icon'
+              variant='ghost'
+              className='rounded-full hover:bg-gray-500 transition transform duration-300'>
+              <Linkedin className='w-[20px] h-[20px]' />
+            </Button>
           </div>
 
           <div className='pt-3'>
@@ -77,24 +103,24 @@ const Footer = async () => {
           <p className='text-lg font-semibold'>Contact Info</p>
           <div className='mt-4 text-sm space-y-3 text-gray-400'>
             <div className='flex items-center gap-3'>
-              <MapPinIcon className='w-5 h-5' />
-              Head Office: No. 91 Upu road, Otukpo, Benue State.
+              <MapPinIcon className='w-5 h-5 flex-shrink-0' />
+              Head Office: {contact.headoffice}
             </div>
             <div className='flex items-center gap-3'>
-              <MapPinIcon className='w-5 h-5' />
-              Branch Office: Suit No. S/... Apo Park, Apo Resettlement, Abuja.
+              <MapPinIcon className='w-5 h-5 flex-shrink-0' />
+              Branch Office: {contact.branchoffice}
             </div>
             <div className='flex items-center gap-3'>
-              <PhoneCallIcon className='w-5 h-5' />
-              23480 444 4444
+              <PhoneCallIcon className='w-5 h-5 flex-shrink-0' />
+              {contact.phone}
             </div>
             <div className='flex items-center gap-3'>
-              <MailCheck className='w-5 h-5' />
-              email@dagceotouchfoundation.org
+              <MailCheck className='w-5 h-5 flex-shrink-0' />
+              {contact.email}
             </div>
             <div className='flex items-center gap-3'>
-              <Clock9Icon className='w-5 h-5' />
-              Mondays - Fridays, 9:00 am to 5:00 pm{" "}
+              <Clock9Icon className='w-5 h-5 flex-shrink-0' />
+              {contact.officehours}
             </div>
           </div>
         </div>

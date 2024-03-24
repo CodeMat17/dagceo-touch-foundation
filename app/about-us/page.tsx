@@ -2,7 +2,7 @@
 import EditSimpleMDE from "@/components/EditSimpleMDE";
 import TitleModel from "@/components/TitleModel";
 import { createClient } from "@/utils/supabase/server";
-import { auth } from "@clerk/nextjs";
+import { UserButton, auth } from "@clerk/nextjs";
 import { Metadata } from "next";
 import ReactMarkdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
@@ -22,7 +22,11 @@ const AboutUs = async () => {
   if (userId) {
     return (
       <div className='px-5 w-full min-h-screen max-w-2xl mx-auto py-12'>
-        <TitleModel text='About Us' />
+        <div className='flex items-center justify-center gap-6'>
+          <TitleModel text='About Us' />
+          <UserButton afterSignOutUrl='/' />
+        </div>
+
         <div className='mt-6'>
           {aboutus &&
             aboutus.map((item) => (

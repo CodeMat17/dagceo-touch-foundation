@@ -61,7 +61,7 @@ const BlogPage = async () => {
                         {dayjs(blog.created_at).format("MMM DD, YYYY, h:mm A")}
                       </span>
                     </CardHeader>
-                    <CardContent className='line-clamp-2'>
+                    <CardContent className='line-clamp-2 overflow-hidden '>
                       <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
                         {blog.content.replace(/\n/gi, "\n\n &nbsp;")}
                       </ReactMarkdown>
