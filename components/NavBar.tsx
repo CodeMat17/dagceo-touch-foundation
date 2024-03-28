@@ -6,8 +6,10 @@ import { usePathname } from "next/navigation";
 import HamburgerMenu from "./HamburgerMenu";
 import LogoComponent from "./LogoComponent";
 import ThemeToggleButton from "./ThemeToggleButton";
+// import {auth} from '@clerk/nextjs'
 
 const NavBar = () => {
+  // const {userId} = auth()
   const { theme, setTheme } = useTheme();
   const pathname = usePathname();
 
@@ -22,7 +24,7 @@ const NavBar = () => {
           <div className='md:hidden'>
             <HamburgerMenu />
           </div>
-          <div className='hidden md:flex gap-4'>
+          <div className='hidden md:flex gap-5'>
             <Link
               href='/'
               className={`hover:text-blue-600 transition transform hover:scale-110 whitespace-nowrap border-b-4 pb-1 ${

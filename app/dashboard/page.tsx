@@ -1,82 +1,42 @@
 import EditDashboard from "@/components/EditDashboard";
 import EditHeroText from "@/components/EditHeroText";
-// import { Button } from "@/components/ui/button";
 import { createClient } from "@/utils/supabase/server";
-import { UserButton } from "@clerk/nextjs";
-// import "easymde/dist/easymde.min.css";
-// import dynamic from "next/dynamic";
-// import { useRouter } from "next/navigation";
-// import { useCallback, useState } from "react";
-
-// const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
-//   ssr: false,
-// });
+import { UserButton, auth } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
 
 const Dashboard = async () => {
+  const { userId } = auth();
   const supabase = createClient();
+
+  if (!userId) {
+    redirect("/");
+  }
 
   const { data: mission } = await supabase
     .from("ourmission")
     .select("*")
     .single();
-  
-   const { data: values } = await supabase
-     .from("ourvalues")
-     .select("*")
-    .single();
-  
-   const { data: impact } = await supabase
-     .from("ourimpact")
-     .select("*")
-    .single();
-  
-  const { data: hero } = await supabase
-    .from("herotext")
+
+  const { data: values } = await supabase
+    .from("ourvalues")
     .select("*")
     .single();
-  
-  // Handle the submit of the post form
-  // const handleSubmit = async () => {
-  //   try {
-  //     setTitleReq(false);
-  //     setContentReq(false);
 
-  //     if (!title) {
-  //       setTitleReq(true);
-  //       return;
-  //     }
+  const { data: impact } = await supabase
+    .from("ourimpact")
+    .select("*")
+    .single();
 
-  //     if (!content) {
-  //       setContentReq(true);
-  //       return;
-  //     }
+  const { data: hero } = await supabase.from("herotext").select("*").single();
 
-  //     if (title || content) {
-  //       setLoading(true);
-
-  //       const { data, error } = await supabaseclient
-  //         .from("blogs")
-  //         .insert([{ image, title, content }]);
-
-  //       if (error) {
-  //         console.error(error);
-  //       } else {
-  //         console.log("db-data: ", data);
-  //       }
-  //     }
-  //   } catch (error) {
-  //     console.log("Error Msg: ", error);
-  //   } finally {
-  //     router.push("/blog");
-  //     setLoading(false);
-  //   }
-  // };
 
   return (
     <div className='px-4 py-20 w-full min-h-screen max-w-2xl mx-auto'>
-      <div className='flex items-center justify-center gap-8'>
+      <div className='relative flex items-center justify-center gap-8'>
         <p className='font-semibold text-xl text-center'>DASHBOARD</p>
-        <UserButton afterSignOutUrl='/' />
+        <div className='absolute right-0 flex items-center gap-4 '>
+          <UserButton afterSignOutUrl='/' />
+        </div>
       </div>
       <div className='mt-12 flex flex-col gap-10'>
         <div>
