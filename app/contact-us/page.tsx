@@ -1,4 +1,5 @@
 import EditContact from "@/components/EditContact";
+import EditFooterNote from "@/components/EditFooterNote";
 import TitleModel from "@/components/TitleModel";
 import { Button } from "@/components/ui/button";
 import { createClient } from "@/utils/supabase/server";
@@ -17,16 +18,24 @@ const ContactUs = async () => {
 
   const { data } = await supabase.from("contactus").select("*").single();
 
+  const { data: footernote } = await supabase
+    .from("footernote")
+    .select("*")
+    .single();
+
   if (userId) {
     return (
-      <EditContact
-        id={data.id}
-        head={data.headoffice}
-        branch={data.branchoffice}
-        hours={data.officehours}
-        tel={data.phone}
-        mail={data.email}
-      />
+      <div className=''>
+        <EditContact
+          id={data.id}
+          head={data.headoffice}
+          branch={data.branchoffice}
+          hours={data.officehours}
+          tel={data.phone}
+          mail={data.email}
+        />
+        <EditFooterNote id={footernote.id} txt={footernote.text} />
+      </div>
     );
   }
 

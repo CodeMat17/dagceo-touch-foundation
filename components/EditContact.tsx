@@ -48,7 +48,7 @@ const EditContact = ({ id, head, branch, hours, tel, mail }: any) => {
   };
 
   return (
-    <div className='w-full min-h-screen  max-w-xl mx-auto px-5 py-20'>
+    <div className='w-full  max-w-xl mx-auto px-5 p-20'>
       <div className='flex items-center justify-center gap-6'>
         <TitleModel text='Edit Contact Info' />
         <UserButton afterSignOutUrl='/' />

@@ -26,6 +26,11 @@ const Footer = async () => {
 
   let { data: contact } = await supabase.from("contactus").select("*").single();
 
+    let { data: footerNote } = await supabase
+      .from("footernote")
+      .select("*")
+      .single();
+
   return (
     <div className='px-4 py-8 bg-slate-900 text-gray-200'>
       <div className='max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 '>
@@ -36,9 +41,7 @@ const Footer = async () => {
           </div>
 
           <p className='text-gray-400 text-sm'>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet cum
-            debitis molestiae eaque. Ea, facilis. Lorem ipsum dolor sit, amet
-            consectetur adipisicing elit. Dolor iusto optio laudantium?
+         {footerNote.text}
           </p>
           <div className='flex items-center gap-6 pt-2 text-gray-400'>
             <Button
