@@ -1,8 +1,12 @@
-import { createClient } from "@/utils/supabase/server";
+// import { createClient } from "@/utils/supabase/server";
 import { NextRequest, NextResponse } from "next/server";
+import {createClient} from '@supabase/supabase-js'
 
 export async function GET(req: NextRequest) {
-  const supabase = await createClient();
+    const supabaseURL = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseSecret = process.env.SUPABASE_SECRET;
+    
+  const supabase = await createClient(supabaseURL!, supabaseSecret!);
 
   console.log("Pinging process just started");
   try {
