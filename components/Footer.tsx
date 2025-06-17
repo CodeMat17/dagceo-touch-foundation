@@ -3,7 +3,6 @@ import {
   Clock9Icon,
   Facebook,
   Instagram,
-  Linkedin,
   MailCheck,
   MapPinIcon,
   PhoneCallIcon,
@@ -26,10 +25,10 @@ const Footer = async () => {
 
   let { data: contact } = await supabase.from("contactus").select("*").single();
 
-    let { data: footerNote } = await supabase
-      .from("footernote")
-      .select("*")
-      .single();
+  let { data: footerNote } = await supabase
+    .from("footernote")
+    .select("*")
+    .single();
 
   return (
     <div className='px-4 py-8 bg-slate-900 text-gray-200'>
@@ -40,36 +39,52 @@ const Footer = async () => {
             <p className='font-semibold text-xl'>Dagceo Touch Foundation</p>
           </div>
 
-          <p className='text-gray-400 text-sm'>
-         {footerNote.text}
-          </p>
+          <p className='text-gray-400 text-sm'>{footerNote.text}</p>
           <div className='flex items-center gap-6 pt-2 text-gray-400'>
             <Button
               size='icon'
               variant='ghost'
+              asChild
               className='rounded-full hover:bg-gray-500 transition transform duration-300'>
-              <Facebook className='w-[20px] h-[20px]' />
+              <a
+                href='https://www.facebook.com/profile.php?id=61576218584823&mibextid=ZbWKwL'
+                target='_blank'
+                rel='noreferrer'>
+                <Facebook className='w-[20px] h-[20px]' />
+              </a>
             </Button>
             <Button
+              asChild
               size='icon'
               variant='ghost'
               className='rounded-full hover:bg-gray-500 transition transform duration-300'>
-              <X className='w-[20px] h-[20px]' />
+              <a
+                href='https://x.com/dagceotouch_F
+'
+                target='_blank'
+                rel='noreferrer'>
+                <X className='w-[20px] h-[20px]' />
+              </a>
             </Button>
 
             <Button
+              asChild
               size='icon'
               variant='ghost'
               className='rounded-full hover:bg-gray-500 transition transform duration-300'>
-              <Instagram className='w-[20px] h-[20px]' />
+              <a
+                href='https://www.instagram.com/dagceotouch_foundation
+' target="_blank" rel="noreferrer">
+                <Instagram className='w-[20px] h-[20px]' />
+              </a>
             </Button>
 
-            <Button
+            {/* <Button
               size='icon'
               variant='ghost'
               className='rounded-full hover:bg-gray-500 transition transform duration-300'>
               <Linkedin className='w-[20px] h-[20px]' />
-            </Button>
+            </Button> */}
           </div>
 
           <div className='pt-3'>
