@@ -1,104 +1,66 @@
 import { Flower2, HandshakeIcon, Leaf } from "lucide-react";
-import TitleModel from "./TitleModel";
-import { Button } from "./ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
 import Link from "next/link";
+import TitleModel from "./TitleModel";
+
+const ways = [
+  {
+    Icon: Flower2,
+    title: "We Need Volunteers",
+    description:
+      "Give your time and skills to help drive meaningful change in communities that need it most.",
+    gradient: "from-pink-500 to-rose-400",
+    bg: "bg-pink-50 dark:bg-pink-950/20",
+    border: "border-pink-100 dark:border-pink-900/40",
+  },
+  {
+    Icon: Leaf,
+    title: "Become A Sponsor",
+    description:
+      "Partner with us to fund programmes that uplift lives and create lasting social impact.",
+    gradient: "from-emerald-500 to-green-400",
+    bg: "bg-emerald-50 dark:bg-emerald-950/20",
+    border: "border-emerald-100 dark:border-emerald-900/40",
+  },
+  {
+    Icon: HandshakeIcon,
+    title: "Make A Donation",
+    description:
+      "Every contribution, big or small, brings us closer to the world we are working to build.",
+    gradient: "from-blue-500 to-indigo-400",
+    bg: "bg-blue-50 dark:bg-blue-950/20",
+    border: "border-blue-100 dark:border-blue-900/40",
+  },
+];
 
 const GetInvolved = () => {
   return (
-    <div className='max-w-5xl mx-auto'>
-      <TitleModel text='Get Involved' />
-      <div className='mt-12 px-4 py-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-12'>
-        <Card className='shadow-md flex flex-col items-center justify-center'>
-          <CardHeader>
-            <div className='flex justify-center'>
-              <div className='relative rounded-full p-3 bg-gray-400/10 shadow'>
-                <Flower2 className='w-9 h-9 bg-clip-text bg-gradient-to-tl from-orange-500 to-red-500' />
-                <div className='absolute top-0 -left-2 w-16 h-16 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob'></div>
-                <div className='absolute top-0 -right-2 w-16 h-16 bg-yellow-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000'></div>
-                <div className='absolute -bottom-2 left-4 w-16 h-16 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000'></div>
-              </div>
-            </div>
-            <CardTitle className='pt-12 text-center font-light'>
-              We Need Volunteers
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            {/* <p className='text-center font-light'>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis
-              ea quo ipsam molestiae quae? Fugit ipsa, soluta enim consequuntur
-              animi nihil repudiandae!
-            </p> */}
-          </CardContent>
-          <CardFooter className='flex justify-center'>
-            <Button asChild className='shadow-md' variant='outline'>
-              <Link href='/get-involved'> Learn more</Link>
-            </Button>
-          </CardFooter>
-        </Card>
+    <section className="w-full bg-gray-50 py-20 md:py-28 dark:bg-gray-950">
+      <div className="mx-auto max-w-5xl px-6">
+        <TitleModel text="Get Involved" />
 
-        <Card className='shadow-md flex flex-col items-center justify-center'>
-          <CardHeader>
-            <div className='flex justify-center'>
-              <div className='relative rounded-full p-3 bg-gray-400/10 shadow'>
-                <Leaf className='w-9 h-9 bg-clip-text bg-gradient-to-tl from-orange-500 to-red-500' />
-                <div className='absolute top-0 -left-2 w-16 h-16 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob'></div>
-                <div className='absolute top-0 -right-2 w-16 h-16 bg-yellow-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000'></div>
-                <div className='absolute -bottom-2 left-4 w-16 h-16 bg-green-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000'></div>
+        <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {ways.map(({ Icon, title, description, gradient, bg, border }) => (
+            <div
+              key={title}
+              className={`flex flex-col items-center gap-5 rounded-2xl border ${border} ${bg} p-8 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-md`}>
+              <div
+                className={`flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${gradient} shadow-md`}>
+                <Icon className="h-7 w-7 text-white" />
               </div>
+              <h3 className="text-lg font-semibold">{title}</h3>
+              <p className="text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+                {description}
+              </p>
+              <Link
+                href="/get-involved"
+                className="mt-auto rounded-full border border-gray-200 bg-white px-6 py-2 text-sm font-medium shadow-sm transition-all duration-200 hover:shadow dark:border-gray-700 dark:bg-gray-900 dark:hover:bg-gray-800">
+                Learn more
+              </Link>
             </div>
-            <CardTitle className='pt-12 text-center font-light'>
-              Become A Sponsor
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            {/* <p className='text-center font-light'>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis
-              ea quo ipsam molestiae quae? Fugit ipsa, soluta enim consequuntur
-              animi nihil repudiandae!
-            </p> */}
-          </CardContent>
-          <CardFooter className='flex justify-center'>
-            <Button asChild className='shadow-md' variant='outline'>
-              <Link href='/get-involved'> Learn more</Link>
-            </Button>
-          </CardFooter>
-        </Card>
-        <Card className='shadow-md flex flex-col items-center justify-center'>
-          <CardHeader>
-            <div className='flex justify-center'>
-              <div className='relative rounded-full p-3 bg-gray-400/10 shadow'>
-                <HandshakeIcon className='w-9 h-9 bg-clip-text bg-gradient-to-tl from-orange-500 to-red-500' />
-                <div className='absolute top-0 -left-2 w-16 h-16 bg-gray-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob'></div>
-                <div className='absolute top-0 -right-2 w-16 h-16 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000'></div>
-                <div className='absolute -bottom-2 left-4 w-16 h-16 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000'></div>
-              </div>
-            </div>
-            <CardTitle className='pt-12 text-center font-light'>
-              Make A Donation
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            {/* <p className='text-center font-light'>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis
-              ea quo ipsam molestiae quae? Fugit ipsa, soluta enim consequuntur
-              animi nihil repudiandae!
-            </p> */}
-          </CardContent>
-          <CardFooter className='flex justify-center'>
-            <Button asChild className='shadow-md' variant='outline'>
-              <Link href='/get-involved'> Learn more</Link>
-            </Button>
-          </CardFooter>
-        </Card>
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

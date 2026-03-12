@@ -1,88 +1,53 @@
 "use client";
 
-import { useTheme } from "next-themes";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import HamburgerMenu from "./HamburgerMenu";
 import LogoComponent from "./LogoComponent";
 import ThemeToggleButton from "./ThemeToggleButton";
-// import {auth} from '@clerk/nextjs'
+
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/about-us", label: "About Us" },
+  { href: "/our-programme", label: "Programme" },
+  { href: "/get-involved", label: "Get Involved" },
+  { href: "/blog", label: "Blog" },
+  { href: "/contact-us", label: "Contact Us" },
+];
 
 const NavBar = () => {
-  // const {userId} = auth()
-  const { theme, setTheme } = useTheme();
   const pathname = usePathname();
 
   return (
-    <div
-      className={`px-4 py-2 sticky top-0 z-50 w-full bg-gray-100 dark:bg-gray-950`}>
-      <div className='w-full max-w-7xl mx-auto flex items-center justify-between'>
-        <LogoComponent classnames='w-[72px] h-[72px] animate-animation' />
+    <nav
+      aria-label="Main navigation"
+      className="sticky top-0 z-50 w-full bg-white/70 backdrop-blur-xl border-b border-gray-200/60 shadow-sm dark:bg-gray-950/70 dark:border-gray-800/50">
+      <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-3">
+        <LogoComponent classnames="w-16 h-16 animate-animation" />
 
-        <div className='flex items-center gap-4 text-lg'>
+        <div className="flex items-center gap-3">
           <ThemeToggleButton />
-          <div className='md:hidden'>
+          <div className="md:hidden">
             <HamburgerMenu />
           </div>
-          <div className='hidden md:flex gap-5'>
-            <Link
-              href='/'
-              className={`hover:text-blue-600 transition transform hover:scale-110 whitespace-nowrap border-b-4 pb-1 ${
-                pathname === "/"
-                  ? " duration-700 text-blue-600  border-blue-600"
-                  : "border-transparent"
-              }`}>
-              Home
-            </Link>
-            <Link
-              href='/about-us'
-              className={`hover:text-blue-600 transition transform hover:scale-110 whitespace-nowrap border-b-4 pb-1 ${
-                pathname === "/about-us"
-                  ? "duration-700 text-blue-600 border-blue-600"
-                  : "border-transparent"
-              }`}>
-              About Us
-            </Link>
-            <Link
-              href='/our-programme'
-              className={`hover:text-blue-600 transition transform hover:scale-110 whitespace-nowrap border-b-4 pb-1 ${
-                pathname === "/our-programme"
-                  ? "duration-700 text-blue-600 border-blue-600 "
-                  : "border-transparent"
-              }`}>
-              Programme
-            </Link>
-            <Link
-              href='/get-involved'
-              className={`hover:text-blue-600 transition transform hover:scale-110 whitespace-nowrap border-b-4 pb-1 ${
-                pathname === "/get-involved"
-                  ? "duration-700 text-blue-600 border-blue-600"
-                  : "border-transparent"
-              }`}>
-              Get Involved
-            </Link>
-            <Link
-              href='/blog'
-              className={`hover:text-blue-600 transition transform hover:scale-110 whitespace-nowrap border-b-4 pb-1 ${
-                pathname === "/blog"
-                  ? "duration-700 text-blue-600 border-blue-600 "
-                  : "border-transparent"
-              }`}>
-              Blog
-            </Link>
-            <Link
-              href='/contact-us'
-              className={`hover:text-blue-600 transition transform hover:scale-110 whitespace-nowrap border-b-4 pb-1 ${
-                pathname === "/contact-us"
-                  ? "duration-700 text-blue-600 border-blue-600"
-                  : "border-transparent"
-              }`}>
-              Contact Us
-            </Link>
+          <div className="hidden items-center gap-1 md:flex">
+            {navLinks.map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                aria-current={pathname === href ? "page" : undefined}
+                className={`whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 ${
+                  pathname === href
+                    ? "bg-blue-600 text-white shadow-md shadow-blue-600/30"
+                    : "text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white"
+                }`}>
+                {label}
+              </Link>
+            ))}
           </div>
         </div>
       </div>
-    </div>
+    </nav>
   );
 };
 
