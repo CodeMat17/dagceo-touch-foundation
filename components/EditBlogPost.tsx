@@ -22,6 +22,7 @@ const EditBlogPost = ({ id, postContent, postImage, postTitle }: any) => {
   const [image, setImage] = useState(postImage);
   const [content, setContent] = useState<string | undefined>(postContent);
   const [loading, setLoading] = useState(false);
+  const [deleting, setDeleting] = useState(false);
 
   const onChange = useCallback((content: string) => {
     setContent(content);
@@ -51,6 +52,25 @@ const EditBlogPost = ({ id, postContent, postImage, postTitle }: any) => {
       console.log("Error Msg: ", error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleDelete = async () => {
+    if (!confirm("Are you sure you want to delete this post?")) return;
+    try {
+      setDeleting(true);
+      const { error } = await supabase.from("blogs").delete().eq("id", id);
+      if (error) {
+        toast.error("Failed to delete post", { position: "top-center" });
+      } else {
+        toast.success("Post deleted", { position: "top-center" });
+        router.push("/blog");
+        router.refresh();
+      }
+    } catch (error) {
+      console.log("Error Msg: ", error);
+    } finally {
+      setDeleting(false);
     }
   };
 
@@ -121,8 +141,15 @@ const EditBlogPost = ({ id, postContent, postImage, postTitle }: any) => {
         // options={autofocusNoSpellcheckerOptions}
         placeholder='Enter blog content here'
       />
-      <Button onClick={update} disabled={loading} className='w-full'>
+      <Button onClick={update} disabled={loading || deleting} className='w-full'>
         {loading ? "UPDATING..." : "UPDATE"}
+      </Button>
+      <Button
+        onClick={handleDelete}
+        disabled={loading || deleting}
+        variant='outline'
+        className='w-full text-red-600 border-red-400 hover:bg-red-50'>
+        {deleting ? "DELETING..." : "DELETE POST"}
       </Button>
     </div>
   );

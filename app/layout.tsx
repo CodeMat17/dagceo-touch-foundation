@@ -1,7 +1,7 @@
 import { ClerkProvider } from '@clerk/nextjs'
 import NavBar from "@/components/NavBar";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Nunito } from "next/font/google";
 import { ThemeProvider } from "../components/theme-provider";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
@@ -10,7 +10,7 @@ import { Suspense } from "react";
 import { CircleDotDashed } from "lucide-react";
 
 
-const inter = Inter({ subsets: ["latin"] });
+const nunito = Nunito({ subsets: ["latin"], weight: ["300", "400", "500", "600", "700", "800", "900"] });
 
 export const metadata: Metadata = {
   title: "DTF | Home",
@@ -25,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={inter.className}>
+      <body className={nunito.className}>
         <ThemeProvider attribute='class'>
           <ClerkProvider>
             <section>

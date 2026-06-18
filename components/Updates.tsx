@@ -32,7 +32,7 @@ const Updates = async () => {
                 <Link
                   key={blog.id}
                   href={`/blog/${blog.id}`}
-                  className="group flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md dark:border-gray-800 dark:bg-gray-900">
+                  className="group flex flex-col overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl dark:border-gray-800/60 dark:bg-gray-900/60">
                   {blog.image ? (
                     <div className="aspect-video w-full overflow-hidden">
                       <BlogImage image={blog.image} width="600" height="340" />
@@ -48,7 +48,7 @@ const Updates = async () => {
                       <CalendarDays className="h-3.5 w-3.5" />
                       {dayjs(blog.created_at).format("MMM DD, YYYY")}
                     </div>
-                    <h3 className="line-clamp-2 text-base font-semibold leading-snug transition-colors duration-200 group-hover:text-blue-600">
+                    <h3 className="line-clamp-2 text-base font-extrabold leading-snug transition-colors duration-200 group-hover:text-violet-600">
                       {blog.title}
                     </h3>
                     <div className="line-clamp-2 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
@@ -56,7 +56,7 @@ const Updates = async () => {
                         {blog.content.replace(/\n/gi, "\n\n &nbsp;")}
                       </ReactMarkdown>
                     </div>
-                    <span className="mt-auto flex items-center gap-1 text-xs font-medium text-blue-600">
+                    <span className="mt-auto flex items-center gap-1 text-xs font-bold text-violet-600">
                       Read more <ArrowRight className="h-3.5 w-3.5" />
                     </span>
                   </div>

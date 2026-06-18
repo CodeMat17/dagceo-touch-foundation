@@ -1,5 +1,6 @@
 import EditDashboard from "@/components/EditDashboard";
 import EditHeroText from "@/components/EditHeroText";
+import ManageBlogPosts from "@/components/ManageBlogPosts";
 import { createClient } from "@/utils/supabase/server";
 import { UserButton, auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
@@ -29,6 +30,10 @@ const Dashboard = async () => {
 
   const { data: hero } = await supabase.from("herotext").select("*").single();
 
+  const { data: blogs } = await supabase
+    .from("blogs")
+    .select("id, title, created_at")
+    .order("created_at", { ascending: false });
 
   return (
     <div className='px-4 py-20 w-full min-h-screen max-w-2xl mx-auto'>
@@ -85,6 +90,13 @@ const Dashboard = async () => {
             from='ourimpact'
             btnText='Update our impact'
           />
+        </div>
+
+        <div>
+          <h1 className='mb-3 text-center font-medium text-lg'>
+            Manage Blog Posts
+          </h1>
+          <ManageBlogPosts blogs={blogs ?? []} />
         </div>
       </div>
     </div>

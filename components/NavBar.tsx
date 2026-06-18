@@ -36,9 +36,9 @@ const NavBar = () => {
                 key={href}
                 href={href}
                 aria-current={pathname === href ? "page" : undefined}
-                className={`whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 ${
+                className={`whitespace-nowrap rounded-full px-4 py-2 text-sm font-bold transition-all duration-200 ${
                   pathname === href
-                    ? "bg-blue-600 text-white shadow-md shadow-blue-600/30"
+                    ? "bg-gradient-to-r from-violet-600 to-pink-600 text-white shadow-md shadow-violet-600/30"
                     : "text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white"
                 }`}>
                 {label}

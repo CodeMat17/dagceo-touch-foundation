@@ -7,6 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { auth } from "@clerk/nextjs";
 import dayjs from "dayjs";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -21,6 +22,7 @@ export const metadata: Metadata = {
 };
 
 const BlogPage = async () => {
+  const { userId } = auth();
   let { data: blogs, error } = await supabaseclient
     .from("blogs")
     .select("*")
@@ -28,7 +30,16 @@ const BlogPage = async () => {
 
   return (
     <div className='w-full min-h-screen max-w-6xl mx-auto px-4 py-20'>
-      <TitleModel text='Blog Posts' />
+      <div className='relative flex items-center justify-center'>
+        <TitleModel text='Blog Posts' />
+        {userId && (
+          <Link
+            href='/blog/new'
+            className='absolute right-0 border rounded-lg px-4 py-1.5 text-sm font-medium hover:bg-accent transition-colors'>
+            + New Post
+          </Link>
+        )}
+      </div>
       {/* <pre>{JSON.stringify(blogs.data, null, 2)}</pre> */}
       <div className='mt-12'>
         {blogs && blogs.length < 1 ? (
